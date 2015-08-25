@@ -32,6 +32,7 @@ while True:
             print 'simulation name', sim.name
             try:
                 run_simulation(sim)
+                # put a mass_save() here
             except KeyboardInterrupt:
                 print 'run ended'
                 pass
