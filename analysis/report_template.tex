@@ -1,0 +1,67 @@
+\documentclass{article}
+
+\begin{document}
+\section{Simulation Setup}
+\subsection{Starting Configuration}
+% In this section we discuss how the starting configuration was made
+%{{starting_config_comment%}}
+
+\subsection{Experimental Parameters}
+  The PDF of the %may want an if statment here
+  final structure was generated using Eqn. (\ref{Eq:Gdef}) with a step of
+    $\delta R=%{{experiment['rstep']%}} $~\AA,
+    $R_\mathrm{min}=%{{experiment['rmin']%}} $~\AA$,
+    $R_\mathrm{min}=%{{experiment['rmax']%}} $~\AA$,
+    Q resolution, $\delta Q= %{{experiment['qbin']%}}$,
+    $Q_\mathrm{min}=%{{experiment['qmin']%}} $~\AA$^{-1}$,
+    $Q_\mathrm{max}=%{{experiment['qmax']%}}$~ \AA$^{-1}$
+
+\subsection{Simulation Parameters}
+The HMC simulation was run with
+$N=%{{sim_params['iterations']%}}$
+iterations, a target acceptance rate of
+%{{sim_params['target_acceptance']%}},
+and an average starting momentum for each NUTS iteration  of
+%{{sim_params['Temperature'] * 10%}} eVfs/\AA.
+
+\subsection{PES}
+Each simulation used both the repulsive and attractive spring potentials,
+with $\kappa=%{{spring_kwargs['k']%}}$ eV/\AA
+and a threshold matching the PDF $R_\mathrm{max}$ and $R_\mathrm{min}$ respectively.
+$\lambda=$ %{{pdf_kwargs['conv']%}} eV was used as conversion factor for
+%{{potential%}} .
+\section{Simulation Results}
+\begin{figure}
+    \def \localimgpath {%{{imagepath}}}
+    \centering
+            \begin{subfigure}{.33\textwidth}
+                \includegraphics[width=2 in]{"\localimgpath_target"}
+        \end{subfigure}
+        \begin{subfigure}{.33\textwidth}
+                \includegraphics[width=2 in]{"\localimgpath_min"}
+        \end{subfigure}
+        \\
+        \begin{subfigure}{.33\textwidth}
+                \includegraphics[width=2 in]{"\localimgpath_pdf"}
+        \end{subfigure}
+        \begin{subfigure}{.33\textwidth}
+                \includegraphics[width=2 in]{"\localimgpath_coord"}
+        \end{subfigure}
+        \\
+        \begin{subfigure}[b]{.33\textwidth}
+                \includegraphics[width=2 in]{"\localimgpath_angle"}
+        \end{subfigure}
+        \begin{subfigure}[b]{.33\textwidth}
+                \includegraphics[width=2 in]{"\localimgpath_rbonds"}
+        \end{subfigure}
+  \caption{From the top left: the target structure,
+  the final structural solution,
+  the comparison of PDFs,
+  the coordination number distribution,
+  the radial bond distribution, and
+  the bond angle distribution.}
+        \label{fig: %{{simulation_name%}}}
+\end{figure}
+The starting %{{potential%}} was %{{results['start_potential']%}} with a final
+%{{potential%}} of %{{results['finish_potential']%}
+\end{document}
